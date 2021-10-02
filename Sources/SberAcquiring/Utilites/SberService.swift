@@ -8,7 +8,7 @@
 import Foundation
 import RestService
 
-public enum SberBaseURL: URL {
+public enum SberService: URL {
 	case prod = "https://securepayments.sberbank.ru"
 	case test = "https://3dsec.sberbank.ru"
 }
