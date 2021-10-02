@@ -14,12 +14,13 @@ public struct SberResponse<T> {
 extension SberResponse: Decodable where T: Decodable {
 	private enum Keys: String, CodingKey {
 		case success
+		case error
 	}
 	
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: Keys.self)
 		guard try container.decode(Bool.self, forKey: .success) else {
-			throw try SberError(from: decoder)
+			throw try container.decode(SberError.self, forKey: .error)
 		}
 		response = try T.init(from: decoder)
 	}
